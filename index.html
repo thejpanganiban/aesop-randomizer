@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+            @import url('https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911');
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        html, body {
+            font-family: 'Goudy Bookletter 1911', serif;
+            background-color: #eee;
+            height: 100%;
+        }
+
+        #app {
+            background-color: transparent;
+            border: 0;
+        }
+
+        #app h1 {
+            font-size: 3rem;
+            color: #333;
+        }
+    </style>
+    <script>
+        var AESOP_FIRST_CHAPTER = 2;
+        var AESOP_LAST_CHAPTER = 147;
+        var AESOP_URL = 'http://www.read.gov/aesop/'
+
+        function formatUrl(formattedPageNumber) {
+            return AESOP_URL + formattedPageNumber + '.html'
+        }
+
+        // See: https://stackoverflow.com/questions/2998784/how-to-output-integers-with-leading-zeros-in-javascript
+        function padPageNumber(number, size) {
+            var s = number + "";
+            while (s.length < size) s = "0" + s;
+            return s;
+        }
+
+        // See: https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * max) + min;
+        }
+
+        function goRandom() {
+            var roll = getRandomNumber(AESOP_FIRST_CHAPTER, AESOP_LAST_CHAPTER);
+            var url = formatUrl(padPageNumber(roll, 3));
+            window.location = url;
+        };
+    </script>
+  </head>
+  <body>
+      <div class="container-fluid h-100">
+          <div class="row h-100">
+              <div class="col-sm d-flex align-items-center justify-content-center h-100">
+                  <div id="app" class="card p-3">
+                      <div class="card-body text-center">
+                          <h1 class="">The Æsop's Fable Randomizer</h1>
+                          <button onclick="goRandom()" type="button" class="btn btn-light">Randomize</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
